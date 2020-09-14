@@ -57,8 +57,8 @@ public class Pinyin implements IPinyin {
                 return true;
             }
 
-            List<String> tonesOne = pinyinTone.toneList(chineseOne, context);
-            List<String> tonesTwo = pinyinTone.toneList(chineseTwo, context);
+            List<String> tonesOne = pinyinTone.toneList(String.valueOf(chineseOne), context);
+            List<String> tonesTwo = pinyinTone.toneList(String.valueOf(chineseTwo), context);
 
             // 交集大于0
             return CollectionUtil.containAny(tonesOne, tonesTwo);
