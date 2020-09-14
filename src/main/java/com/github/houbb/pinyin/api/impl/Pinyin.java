@@ -38,8 +38,7 @@ public class Pinyin implements IPinyin {
         final IPinyinTone pinyinTone = context.tone();
 
         if(pinyinChinese.isChinese(original)) {
-            String simple = pinyinChinese.toSimple(original);
-            return pinyinTone.toneList(simple, context);
+            return pinyinTone.toneList(original, context);
         }
 
         // 直接返回
@@ -58,11 +57,8 @@ public class Pinyin implements IPinyin {
                 return true;
             }
 
-            String simpleOne = pinyinChinese.toSimple(chineseOne);
-            String simpleTwo = pinyinChinese.toSimple(chineseTwo);
-
-            List<String> tonesOne = pinyinTone.toneList(simpleOne, context);
-            List<String> tonesTwo = pinyinTone.toneList(simpleTwo, context);
+            List<String> tonesOne = pinyinTone.toneList(chineseOne, context);
+            List<String> tonesTwo = pinyinTone.toneList(chineseTwo, context);
 
             // 交集大于0
             return CollectionUtil.containAny(tonesOne, tonesTwo);
@@ -137,10 +133,7 @@ public class Pinyin implements IPinyin {
 
             // 这里理论上是不用判断是否为中文
             if(pinyinChinese.isChinese(entry)) {
-                // 是否简体转换也应该加一个开关
-                String simple = pinyinChinese.toSimple(entry);
-                String tone = pinyinTone.tone(simple, context);
-
+                String tone = pinyinTone.tone(entry, context);
                 resultList.add(tone);
             } else {
                 resultList.add(entry);

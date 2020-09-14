@@ -127,12 +127,6 @@ public class DefaultPinyinTone extends AbstractPinyinTone {
 
                     final String word = strings[0];
                     charMap.put(word, pinyinList);
-
-                    // 转换为简体，再一次存储
-                    String simple = pinyinChinese.toSimple(word);
-                    if(!word.equals(simple)) {
-                        charMap.put(simple, pinyinList);
-                    }
                 }
 
                 final long endTime = System.currentTimeMillis();
@@ -168,12 +162,6 @@ public class DefaultPinyinTone extends AbstractPinyinTone {
                     String[] strings = line.split(PunctuationConst.COLON);
                     String word = strings[0];
                     phraseMap.put(word, strings[1]);
-
-                    // 转换为简体，再一次存储
-                    String simple = pinyinChinese.toSimple(word);
-                    if(!word.equals(simple)) {
-                        phraseMap.put(simple, strings[1]);
-                    }
                 }
 
                 final long endTime = System.currentTimeMillis();
